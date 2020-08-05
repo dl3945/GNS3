@@ -60,6 +60,16 @@ for devices in all_devices:
     output = net_connect.send_config_set(lines)
     print(output)
     time.sleep(1)    
-    
-    
-    
+
+with open('r1_104') as file:
+    lines = file.read().splitlines()
+print(lines)
+
+all_devices = [iosv_l2_s5]
+
+for devices in all_devices:
+    net_connect = ConnectHandler(**devices)
+    net_connect.enable()
+    output = net_connect.send_config_set(lines)
+    print(output)
+    time.sleep(1)
