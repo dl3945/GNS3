@@ -1,0 +1,11 @@
+vlan 10 
+vlan 20 
+int range gig2/0
+switchport mode access
+switchport access vlan 10
+int range g0/1-2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 1,10,20
+spanning-tree link-type point-to-point

@@ -1,0 +1,21 @@
+int gi2/0
+ip address 10.20.0.1 255.255.255.0
+no shutdown
+exit
+int gi2/1
+ip address 23.1.2.1 255.255.255.0
+no shutdown
+exit
+router ospf 1
+network 10.20.0.1 0.0.0.0 area 0
+exit
+access-list 1 permit 10.0.0.0 0.255.255.255
+int gig 2/0
+ip nat outside
+int gig 2/1
+ip nat inside
+exit
+ip nat inside source list 1 interface gig 2/0 overload
+router ospf 1
+default-information originate
+end
